@@ -1,0 +1,16 @@
+<%- include('partials/header', { title: 'Write a post' }) %>
+<section class="form-page">
+  <a class="back-link" href="/">← Back to journal</a>
+  <header class="form-heading"><p class="eyebrow">YOUR TURN</p><h1>Put it into<br><em>words.</em></h1><p>Share a thought, a story, or something you noticed.</p></header>
+  <% if (error) { %><div class="form-error" role="alert"><%= error %></div><% } %>
+  <form class="post-form" action="/posts" method="post">
+    <label for="title">Title <span>REQUIRED</span></label>
+    <input id="title" name="title" type="text" maxlength="120" placeholder="A title that feels right" value="<%= values.title || '' %>" required>
+    <label for="excerpt">Short introduction <span>OPTIONAL</span></label>
+    <input id="excerpt" name="excerpt" type="text" maxlength="240" placeholder="A one-line preview for the journal" value="<%= values.excerpt || '' %>">
+    <label for="content">Your story <span>MARKDOWN SUPPORTED</span></label>
+    <textarea id="content" name="content" rows="14" maxlength="20000" placeholder="Start writing here…\n\nUse **bold**, *italics*, headings, links, and lists." required><%= values.content || '' %></textarea>
+    <div class="form-actions"><p>Your post will be saved as a Markdown file.</p><button class="button" type="submit">Publish post <span aria-hidden="true">↗</span></button></div>
+  </form>
+</section>
+<%- include('partials/footer') %>

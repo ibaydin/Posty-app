@@ -1,0 +1,34 @@
+<%- include('partials/header', { title: 'Journal' }) %>
+<section class="hero">
+  <p class="eyebrow"><span class="eyebrow-line"></span> A SMALL CORNER OF THE INTERNET</p>
+  <h1>Notes worth<br><em>keeping.</em></h1>
+  <p class="hero-copy">Ideas, observations, and little things that make a day.</p>
+  <a class="text-link" href="#latest">Explore the journal <span aria-hidden="true">↓</span></a>
+  <div class="hero-stamp" aria-hidden="true"><span>EST.</span><strong>2026</strong><i>✳</i></div>
+</section>
+<section class="posts-section" id="latest">
+  <div class="section-heading">
+    <div><p class="eyebrow">THE JOURNAL</p><h2>Latest stories</h2></div>
+    <span class="post-count"><%= posts.length.toString().padStart(2, '0') %> POSTS</span>
+  </div>
+  <% if (posts.length) { %>
+    <div class="post-list">
+      <% posts.forEach((post, index) => { %>
+        <article class="post-card">
+          <a class="post-card-link" href="/posts/<%= encodeURIComponent(post.slug) %>">
+            <span class="post-number"><%= String(index + 1).padStart(2, '0') %></span>
+            <div class="post-card-content">
+              <p class="post-meta"><%= post.date.getTime() ? post.date.toLocaleDateString('en', { month: 'long', day: 'numeric', year: 'numeric' }) : 'A little while ago' %><span>·</span> 4 MIN READ</p>
+              <h3><%= post.title %></h3>
+              <p class="post-excerpt"><%= post.excerpt %></p>
+            </div>
+            <span class="post-arrow" aria-hidden="true">↗</span>
+          </a>
+        </article>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="empty-state"><span class="empty-icon">✳</span><h3>The page is still blank.</h3><p>Start the journal with a thought of your own.</p><a class="button" href="/posts/new">Write the first post <span>＋</span></a></div>
+  <% } %>
+</section>
+<%- include('partials/footer') %>

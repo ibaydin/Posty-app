@@ -1,0 +1,12 @@
+<%- include('partials/header', { title: post.title }) %>
+<article class="article">
+  <a class="back-link" href="/">← Back to journal</a>
+  <header class="article-header">
+    <p class="eyebrow">FIELD NOTES <span>·</span> <%= post.date ? post.date.toLocaleDateString('en', { month: 'long', day: 'numeric', year: 'numeric' }) : 'UNDATED' %></p>
+    <h1><%= post.title %></h1>
+    <div class="article-rule"><span>✳</span></div>
+  </header>
+  <div class="markdown-body"><%- post.html %></div>
+  <div class="article-end"><span>✳</span> Thanks for reading.</div>
+</article>
+<%- include('partials/footer') %>
